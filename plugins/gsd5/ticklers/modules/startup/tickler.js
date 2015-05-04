@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/briefcase/core/modules/startup/tickler.js
+title: $:/plugins/gsd5/ticklers/modules/startup/tickler.js
 type: application/javascript
 module-type: startup
 

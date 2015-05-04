@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/briefcase/core/modules/widgets/datepicker.js
+title: $:/plugins/gsd5/ticklers/modules/widgets/datepicker.js
 type: application/javascript
 module-type: widget
 
