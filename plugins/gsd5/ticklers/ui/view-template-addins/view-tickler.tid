@@ -1,4 +1,5 @@
-title: $:/plugins/briefcase/core/ui/addins/ViewTickler
+title: $:/plugins/gsd5/core/ui/addins/ViewTickler
+tags: $:/tags/GSD5ActionCore
 
 Tickler Date:
 <$date field="gtd_tickdate"/>
