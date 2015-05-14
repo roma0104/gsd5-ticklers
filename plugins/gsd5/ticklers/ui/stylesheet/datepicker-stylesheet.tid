@@ -29,3 +29,8 @@ tags: $:/tags/Stylesheet
   background-color: <<colour primary>>;
   color: #fff;
 }
+
+/* Fix trashcan on alert title when body is empty. */
+.tc-alert-subtitle {
+  padding-right: 20px;
+}
