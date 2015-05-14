@@ -17,12 +17,15 @@ tags: $:/tags/Stylesheet
 
 .tw-calendar-date:hover {
   background-color: <<colour primary>>;
+  color: #fff;
 }
 
 .tw-calendar-left:hover {
   background-color: <<colour primary>>;
+  color: #fff;
 }
 
 .tw-calendar-right:hover {
   background-color: <<colour primary>>;
+  color: #fff;
 }
