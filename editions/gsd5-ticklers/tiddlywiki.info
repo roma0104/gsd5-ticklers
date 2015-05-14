@@ -1,7 +1,6 @@
 {
 	"description": "Empty Ticklers edition",
 	"plugins": [
-		"gsd5/core",
 		"gsd5/ticklers"
 	],
 	"themes": [
