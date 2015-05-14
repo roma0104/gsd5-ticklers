@@ -30,12 +30,17 @@ function checkForAlert(title, tiddler) {
 	if(!tiddler) {
 		return;
 	}
-	if(tiddler.fields.gtd_type === "tickler") {
-		if(tiddler.fields.gtd_tickdate) {
-			var alert_date = $tw.utils.parseDate(tiddler.fields.gtd_tickdate);
+	if(tiddler.fields.gtd_type === "action") {
+		if(tiddler.fields.gsd_tickdate) {
+			var alert_date = $tw.utils.parseDate(tiddler.fields.gsd_tickdate);
 			if(alert_date <= now) {
-				this.setText(title, "component", null, tiddler.fields.title);
-				this.setText(title, "tags", null, "$:/tags/Alert");
+				var alertTiddler = new $tw.Tiddler({
+					"title": title,
+					"modified": tiddler.fields.gsd_tickdate,
+					"component": "ticklers",
+					"tags": "$:/tags/Alert"
+				});
+				$tw.wiki.addTiddler(alertTiddler);
 			}
 		}
 	}
