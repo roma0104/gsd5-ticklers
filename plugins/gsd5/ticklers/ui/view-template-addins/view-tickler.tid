@@ -1,5 +1,5 @@
 title: $:/plugins/gsd5/core/ui/addins/ViewTickler
-tags: $:/tags/GSD5ActionCore
+tags: $:/tags/GSD5ActionPlugin
 
 Tickler Date:
 <$date field="gsd_tickdate"/>
