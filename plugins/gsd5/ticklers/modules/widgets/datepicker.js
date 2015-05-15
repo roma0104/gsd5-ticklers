@@ -87,6 +87,7 @@ DateWidget.prototype.handleChange = function(event) {
 		}
 	}
 	this.setField(date_obj);
+	$tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
 };
 
 /*
