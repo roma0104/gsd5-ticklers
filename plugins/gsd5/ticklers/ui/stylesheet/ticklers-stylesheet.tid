@@ -13,6 +13,7 @@ tags: $:/tags/Stylesheet
   margin: 0;
   background-color: <<colour background>>;
   cursor: default;
+  z-index: 10;
 }
 
 .tw-calendar-date:hover {
