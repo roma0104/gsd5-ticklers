@@ -35,9 +35,10 @@ function checkForAlert(title, tiddler) {
 			var alert_date = $tw.utils.parseDate(tiddler.fields.gsd_tickdate);
 			if(alert_date <= now) {
 				var alertTiddler = new $tw.Tiddler({
-					"title": title,
+					"title": "$:/temp/alert/" + title,
 					"modified": tiddler.fields.gsd_tickdate,
 					"component": title,
+					"text": "[[Go to Action|" + title + "]]",
 					"tags": "$:/tags/Alert"
 				});
 				$tw.wiki.addTiddler(alertTiddler);
