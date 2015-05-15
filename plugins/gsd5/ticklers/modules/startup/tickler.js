@@ -22,7 +22,7 @@ exports.startup = function() {
 	$tw.wiki.forEachTiddler(checkForAlert);
 	var interval = setInterval(function() {
 		$tw.wiki.forEachTiddler(checkForAlert);
-	}, 3600000);
+	}, 90000);
 };
 
 function checkForAlert(title, tiddler) {
