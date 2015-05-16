@@ -42,9 +42,15 @@ function checkForAlert(title, tiddler) {
 					"tags": "$:/tags/Alert"
 				});
 				$tw.wiki.addTiddler(alertTiddler);
+				clearTickdate(tiddler);
 			}
 		}
 	}
+}
+
+/* Current we must clear the gsd_tickdate field to avoid the recreation of ticklers after the user has deleted the tickler. */
+function clearTickdate(tiddler) {
+	$tw.wiki.addTiddler(new $tw.Tiddler(tiddler,{"gsd_tickdate":undefined}));
 }
 
 })();
