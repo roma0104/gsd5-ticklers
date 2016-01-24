@@ -22,7 +22,7 @@ exports.startup = function() {
 	$tw.wiki.forEachTiddler(checkForAlert);
 	var interval = setInterval(function() {
 		$tw.wiki.forEachTiddler(checkForAlert);
-	}, 90000);
+	}, 3600000);
 };
 
 function checkForAlert(title, tiddler) {
@@ -50,7 +50,16 @@ function checkForAlert(title, tiddler) {
 
 /* Current we must clear the gsd_tickdate field to avoid the recreation of ticklers after the user has deleted the tickler. */
 function clearTickdate(tiddler) {
-	$tw.wiki.addTiddler(new $tw.Tiddler(tiddler,{"gsd_tickdate":undefined}));
+	if(tiddler.fields.gsd_tickdays) {
+		var day = parseInt(tiddler.fields.gsd_tickdays);
+	}
+	if(day !== NaN || day !== 0) {
+		var alert_date = $tw.utils.parseDate(tiddler.fields.gsd_tickdate);
+		alert_date.setTime(alert_date.getTime() + day * 86400000);
+		$tw.wiki.addTiddler(new $tw.Tiddler(tiddler,{"gsd_tickdate":$tw.utils.stringifyDate(alert_date)}));
+	} else {
+		$tw.wiki.addTiddler(new $tw.Tiddler(tiddler,{"gsd_tickdate":undefined}));
+	}
 }
 
 })();

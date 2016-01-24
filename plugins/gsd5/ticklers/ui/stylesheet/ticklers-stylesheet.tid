@@ -3,6 +3,7 @@ tags: $:/tags/Stylesheet
 
 .tw-calendar {
   position: relative;
+  min-height: 17px;
 }
 
 .tw-calendar-popup {
@@ -11,6 +12,7 @@ tags: $:/tags/Stylesheet
   display: none;
   position: absolute;
   margin: 0;
+  margin-top: 22px;
   background-color: <<colour background>>;
   cursor: default;
   z-index: 10;
@@ -34,4 +36,9 @@ tags: $:/tags/Stylesheet
 /* Fix trashcan on alert title when body is empty. */
 .tc-alert-subtitle {
   padding-right: 20px;
+}
+
+.gsd_tickler_input {
+  margin-top: 5px;
+  width: 40px;
 }
