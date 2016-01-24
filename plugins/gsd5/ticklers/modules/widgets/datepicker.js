@@ -26,6 +26,18 @@ DateWidget.prototype = new Widget();
  */
 DateWidget.prototype.render = function(parent, nextSibling) {
 	var self = this;
+	
+	// Determine if this browser supports the date input type.
+	// http://stackoverflow.com/questions/21580934/native-datepicker-on-chrome-and-fallback-for-ie-firefox
+	var dateSupported = (function() {
+	    var el = this.document.createElement('input'),
+	        invalidVal = 'foo'; // Any value that is not a date
+	    el.setAttribute('type','date');
+	    el.setAttribute('value', invalidVal);
+	    // A supported browser will modify this if it is a true date field
+	    return el.value !== invalidVal;
+	}());
+
 	this.calendar = new Calendar();
 	this.parentDomNode = parent;
 	this.computeAttributes();
@@ -34,15 +46,18 @@ DateWidget.prototype.render = function(parent, nextSibling) {
 	this.domNode = this.document.createElement("div");
 	this.domNode.setAttribute("class", "tw-calendar");
 	this.inputNode = this.document.createElement("input");
+	this.inputNode.setAttribute("type", "date");
 	this.getField();
 	// Create event listeners
 	// When the input field is selected, show the floating calendar.
-	this.inputNode.addEventListener(
-		"focus",
-		function(event) {
-			self.calendar.show();
-		}, true
-	);
+	if(!dateSupported) {
+		this.inputNode.addEventListener(
+			"focus",
+			function(event) {
+				self.calendar.show();
+			}, true
+		);
+	}
 	/*
 	 * When editing the field manually, hitting Enter will save the date to
 	 * the tiddler field specified.  Clicking off the field or blurring the focus will set the field.
@@ -65,14 +80,18 @@ DateWidget.prototype.render = function(parent, nextSibling) {
 	 * Watch for click outside the calendar that loses focus and hides the
 	 * calendar.
 	 */
-	this.document.addEventListener(
-		'click',
-		function(event) {
-			self.calendar.isOutsideCalendar(event);
-		},false
-	);
+	if(!dateSupported) {
+		this.document.addEventListener(
+			'click',
+			function(event) {
+				self.calendar.isOutsideCalendar(event);
+			},false
+		);
+	}
+	if(!dateSupported) {
+		this.calendar.build(this);
+	}
 	this.domNode.appendChild(this.inputNode);
-	this.calendar.build(this);
 	// Insert element
 	parent.insertBefore(this.domNode, nextSibling);
 	this.renderChildren(this.domNode, null);
