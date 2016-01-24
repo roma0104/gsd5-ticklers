@@ -45,8 +45,7 @@ DateWidget.prototype.render = function(parent, nextSibling) {
 	);
 	/*
 	 * When editing the field manually, hitting Enter will save the date to
-	 * the tiddler field specified.  Attempted other means, 'blur' and tried to
-	 * include 'tab' cannot get the updates to work correctly.
+	 * the tiddler field specified.  Clicking off the field or blurring the focus will set the field.
 	 */
 	this.inputNode.addEventListener(
 		"keypress",
@@ -54,6 +53,12 @@ DateWidget.prototype.render = function(parent, nextSibling) {
 			if(event.keyCode === 13) {
 				self.handleChange();
 			}
+		}, true
+	);
+	this.inputNode.addEventListener(
+		"blur",
+		function(event) {
+			self.handleChange();
 		}, true
 	);
 	/*
